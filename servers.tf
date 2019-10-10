@@ -2,12 +2,12 @@ data "aws_ami" "latest-ubuntu" {
   most_recent = true
 
   filter {
-    name = "name"
+    name   = "name"
     values = ["ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-*"]
   }
 
   filter {
-    name = "virtualization-type"
+    name   = "virtualization-type"
     values = ["hvm"]
   }
 
@@ -15,7 +15,7 @@ data "aws_ami" "latest-ubuntu" {
 }
 
 resource "aws_instance" "secondserver" {
-  ami = data.aws_ami.latest-ubuntu.id
+  ami           = data.aws_ami.latest-ubuntu.id
   instance_type = "t2.micro"
 
   tags = {
@@ -24,3 +24,5 @@ resource "aws_instance" "secondserver" {
 
   subnet_id = aws_subnet.subnet2.id
 }
+
+
